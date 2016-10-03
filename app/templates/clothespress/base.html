@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}老婆的衣橱{% endblock %}
+
+{% block row_menu %}
+<ul class="nav nav-pills nav-stacked well">
+    {% for row_menu in row_menu_list %}
+    <li id="{{ row_menu['id'] }}">
+        <a href="{{ row_menu['url'] }}">{{ row_menu['name'] }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script type="text/javascript">
+try{
+    var div = document.getElementById('{% block menu %}{% endblock %}');
+    div.setAttribute("class", "active");
+}catch(err){
+}
+</script>
+{% endblock %}

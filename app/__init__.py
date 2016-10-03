@@ -16,6 +16,10 @@ def create_app():
     bootstrap.init_app(app)
     db.init_app(app)
 
+    from .main import main as main_blueprint
+    app.register_blueprint(main_blueprint)
+
     from .clothespress import clothespress as clothespress_blueprint
     app.register_blueprint(clothespress_blueprint)
     return app
+
