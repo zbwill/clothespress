@@ -18,6 +18,8 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'data.sqlite')
 
+    PIC_DOMAIN_NAME = 'pimg.snail.com'
+
     @classmethod
     def init_app(cls, app):
         from werkzeug.contrib.fixers import ProxyFix
