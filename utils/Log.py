@@ -2,7 +2,7 @@
 
 import logging
 import logging.handlers
-import os, sys
+import sys
 from config import Config
 
 

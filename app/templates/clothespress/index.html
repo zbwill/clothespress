@@ -7,10 +7,29 @@
     <div class="col-xs-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">首页</h3>
+                <h3 class="panel-title">
+                    所有衣服
+                    <a href="{{ url_for('clothespress.add_clothes') }}" style="float:right;color:yellow">添加衣服</a>
+                </h3>
             </div>
             <div class="panel-body">
-                Hello Clothespress
+                {% for clothesRow in clothesList %}
+                <div class="row">
+                    {% for clothes in clothesRow %}
+                    <div class="col-xs-3">
+                        <div class="img">
+                            <a href="{{ url_for('clothespress.clothes_info', clothesId=clothes.id) }}">
+                                <img src="{{ clothes.thumbnailPath }}" class="img-responsive">
+                            </a>
+                        </div>
+                        <div class="desc" style="overflow: hidden; text-overflow:ellipsis">
+                            {{ clothes.remark }}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <hr />
+                {% endfor %}
             </div>
         </div>
     </div>

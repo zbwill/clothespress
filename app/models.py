@@ -13,21 +13,21 @@ class ClothesType(db.Model):
     def __repr__(self):
         return '<ClothesType %r>' % self.typeName
 
+clothesTag = db.Table('clothesTag',
+                      db.Column('clothesId', db.Integer, db.ForeignKey('clothes.id')),
+                      db.Column('tagId', db.Integer, db.ForeignKey('tag.id')), )
+
 
 class Clothes(db.Model):
     __tablename__ = 'clothes'
     id = db.Column(db.Integer, primary_key=True)
-    clothesName = db.Column(db.String(64), unique=True, index=True)
+    picPath = db.Column(db.Text(), unique=True, index=True)
+    thumbnailPath = db.Column(db.Text())
     remark = db.Column(db.Text())
     clothesTypeId = db.Column(db.Integer, db.ForeignKey('clothesType.id'))
     tags = db.relationship('Tag', secondary=clothesTag,
                            backref=db.backref("clothes", lazy='dynamic'),
                            lazy='dynamic')
-
-
-clothesTag = db.Table('clothesTag',
-                      db.Column('clothesId', db.Integer, db.ForeignKey('clothes.id')),
-                      db.Column('tagId', db.Integer, db.ForeignKey('tag.id')), )
 
 
 class Tag(db.Model):

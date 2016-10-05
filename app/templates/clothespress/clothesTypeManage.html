@@ -1,0 +1,42 @@
+{% extends "clothespress/base.html" %}
+
+{% block menu %}clothes_type{% endblock %}
+
+{% block page_content %}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    衣服类型管理
+                    <a href="{{ url_for('clothespress.add_clothes_type') }}" style="float:right;color:yellow">添加衣服类型</a>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped" style="word-wrap: break-word;word-break:break-all;">
+                    <thead>
+                        <tr>
+                            <th width="25%">分类名称</th>
+                            <th width="50%">描述</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for clothesType in clothesTypeList %}
+                        <tr id="clothes_type_{{ clothesType.id }}" >
+                            <td class="name">{{ clothesType.typeName }}</td>
+                            <td class="desc">{{ clothesType.remark }}</td>
+                            <td class="manage">
+                                <a href="{{ url_for('clothespress.modify_clothes_type', clothesTypeId=clothesType.id) }}">修改</a>
+                                <a href="{{ url_for('clothespress.delete_clothes_type', clothesTypeId=clothesType.id) }}">删除</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

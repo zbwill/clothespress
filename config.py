@@ -18,7 +18,7 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'data.sqlite')
 
-    PIC_DOMAIN_NAME = 'pimg.snail.com'
+    PIC_DOMAIN_URL = 'http://pimg.snail.com/'
 
     @classmethod
     def init_app(cls, app):
