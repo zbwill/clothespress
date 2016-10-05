@@ -20,6 +20,13 @@ def index():
     return render_template('clothespress/index.html', clothesList=clothes_list)
 
 
+@clothespress.route('/clothesByType/<int:clothesTypeId>')
+def clothes_by_type(clothesTypeId):
+    clothesType = ClothesType.query.get_or_404(clothesTypeId)
+    clothes_list = Clothes.query.filter_by(clothesTypeId=clothesTypeId).all()
+    clothes_list = [clothes_list[i:i + 4] for i in range(0, len(clothes_list), 4)]
+    return render_template('clothespress/clothesByType.html', clothesList=clothes_list, clothesType=clothesType)
+
 @clothespress.route('/modifyClothes/<int:clothesId>', methods=['GET', 'POST'])
 def modify_clothes(clothesId):
     clothes_type_list = ClothesType.query.all()
