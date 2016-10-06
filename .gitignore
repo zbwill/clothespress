@@ -10,3 +10,4 @@ migrations
 .pydevproject
 .settings
 .idea
+img/*.jpg
